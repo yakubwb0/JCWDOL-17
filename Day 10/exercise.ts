@@ -35,26 +35,7 @@ console.log(singleNumber([1]));              // Output: 1
 // Is Anagram
 
 function isAnagram(s: string, t: string): boolean {
-    if (s.length !== t.length) {
-        return false;
-    }
-
-    const charCount: Record<string, number> = {};
-
-    // Count the characters in the first string
-    for (const char of s) {
-        charCount[char] = (charCount[char] || 0) + 1;
-    }
-
-    // Verify the counts against the second string
-    for (const char of t) {
-        if (!charCount[char]) {
-            return false;
-        }
-        charCount[char]--;
-    }
-
-    return true;
+    return s.split('').sort().join('') === t.split('').sort().join('');
 }
 
 console.log(isAnagram("anagram", "nagaram")); // true
