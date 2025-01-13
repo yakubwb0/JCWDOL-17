@@ -4,7 +4,6 @@ import { config } from "dotenv";
 import express, { Application, Request, Response } from "express";
 import { resolve } from "path";
 import { Pool } from "pg";
-
 const app: Application = express();
 config({ path: resolve(__dirname, ".env") });
 const PORT = process.env.PORT || 8000;

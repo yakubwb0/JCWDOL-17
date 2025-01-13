@@ -1,7 +1,12 @@
 /** @format */
 
 import { Request, Response, Router } from "express";
-import { addProduct, getData } from "../helpers/products";
+import {
+  addProduct,
+  deleteProduct,
+  getData,
+  updateProduct,
+} from "../helpers/products";
 import { IProduct } from "../interfaces/product.interface";
 const router = Router();
 
@@ -27,6 +32,22 @@ router.post("/", (req: Request, res: Response) => {
   addProduct(req.body as IProduct);
   res.send({
     message: "new product has been added",
+  });
+});
+
+router.patch("/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  updateProduct(req.body as IProduct, Number(id));
+  res.send({
+    message: "product has been updated",
+  });
+});
+
+router.delete("/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  deleteProduct(Number(id));
+  res.send({
+    message: "product has been deleted",
   });
 });
 
